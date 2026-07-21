@@ -15,6 +15,7 @@
 ### Fixed
 
 - Webhook handling no longer fails on transactions that have no custom fields configured in Braintree (`customFields` is now safely defaulted before reading `medusa_payment_session_id`).
+- `npm publish` can no longer ship an empty package when the plugin build fails: a publish gate (`scripts/verify-publish.js`) now verifies the compiled `.medusa/server` output exists and aborts the publish otherwise, and the build scripts use the project-local Medusa CLI instead of `npx` (which could silently fall back to a broken globally-installed CLI).
 
 ## 0.0.1
 

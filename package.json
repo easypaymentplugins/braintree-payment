@@ -47,10 +47,10 @@
     "typescript": "^5.7.2"
   },
   "scripts": {
-    "build": "npx medusa plugin:build",
+    "build": "medusa plugin:build && node scripts/verify-publish.js",
     "test": "jest --config jest.config.cjs --runInBand",
-    "plugin:dev": "npx medusa plugin:develop",
-    "prepublishOnly": "npx medusa plugin:build",
+    "plugin:dev": "medusa plugin:develop",
+    "prepublishOnly": "npm run build",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
