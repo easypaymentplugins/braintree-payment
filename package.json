@@ -1,7 +1,7 @@
 {
   "name": "@easypayment/medusa-payment-braintree",
   "version": "0.0.1",
-  "description": "Industry-grade Braintree (a PayPal service) payment provider plugin for Medusa v2, by EasyPayment",
+  "description": "Braintree payment provider plugin for Medusa v2 — accept credit/debit cards and ACH Direct Debit with 3D Secure, vaulting, refunds, and webhook-driven payment updates.",
   "author": "EasyPayment (https://github.com/easypayment)",
   "license": "MIT",
   "repository": {

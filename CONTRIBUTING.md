@@ -1,4 +1,4 @@
-# Contributing to EasyPayment Braintree for Medusa
+# Contributing to Braintree Payments for Medusa v2
 
 Thanks for your interest in improving this plugin!
 
