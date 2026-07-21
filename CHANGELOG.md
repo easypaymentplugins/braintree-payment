@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Complete step-by-step setup guide (`docs/USER-GUIDE.md`) covering the full journey — Braintree sandbox signup, credentials, installation, configuration, admin setup, custom fields, webhooks, storefront integration, sandbox testing, ACH, 3D Secure, imported payments, a going-live checklist, and troubleshooting — written in plain language for non-technical users as well as developers.
+
+### Fixed
+
+- Webhook handling no longer fails on transactions that have no custom fields configured in Braintree (`customFields` is now safely defaulted before reading `medusa_payment_session_id`).
+
 ## 0.0.1
 
 Initial release of `@easypaymentplugins/medusa-payment-braintree` under the EasyPayment brand.
