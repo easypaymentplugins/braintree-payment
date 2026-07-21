@@ -5,6 +5,7 @@
 ### Added
 
 - Complete step-by-step setup guide (`docs/USER-GUIDE.md`) covering the full journey — Braintree sandbox signup, credentials, installation, configuration, admin setup, custom fields, webhooks, storefront integration, sandbox testing, ACH, 3D Secure, imported payments, a going-live checklist, and troubleshooting — written in plain language for non-technical users as well as developers.
+- Storefront integration guide (`docs/STOREFRONT-GUIDE.md`) — full step-by-step frontend walkthrough: how checkout payments work in Medusa v2, listing/displaying the Card and ACH payment methods at checkout, payment sessions and client tokens, card payments with Braintree Drop-in, the nonce → order completion flow, ACH bank form with the required debit-authorization mandate, 3D Secure, exact wiring for the official Next.js starter, a testing checklist, and troubleshooting.
 
 ### Fixed
 

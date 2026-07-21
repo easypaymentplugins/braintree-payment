@@ -279,6 +279,8 @@ A webhook is Braintree proactively telling your store "payment X settled" or "pa
 
 *This step is for your developer. Non-technical readers: forward this section and skip to Step 10 once done.*
 
+> **Full walkthrough available:** this section is the short version. For the complete, copy-paste frontend guide — showing the payment methods in the checkout list, the card form, ACH, 3D Secure, and exact instructions for the official Next.js starter — see the **[Storefront Integration Guide](STOREFRONT-GUIDE.md)**.
+
 The plugin handles everything on the **server** side. The **storefront** (the website customers see) needs a payment form that turns card details into a secure one-time token (a "nonce") using Braintree's client SDK — card numbers never touch your server.
 
 The flow for a developer to implement at checkout:
