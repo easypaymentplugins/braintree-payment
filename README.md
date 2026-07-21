@@ -8,6 +8,10 @@
 
 Built and maintained by **EasyPayment**.
 
+> **New to Medusa or not a developer?** Follow the **[Complete Setup Guide](docs/USER-GUIDE.md)** — a plain-language, step-by-step walkthrough from creating a Braintree account to your first live payment, written for store owners as well as developers.
+>
+> **Building the checkout?** The **[Storefront Integration Guide](docs/STOREFRONT-GUIDE.md)** shows step by step how to display the Card and ACH payment methods in your checkout's payment list and wire up the full payment flow (Drop-in, ACH, 3D Secure, Next.js starter).
+
 ## Table of Contents
 
 - [Highlights](#highlights)
@@ -244,6 +248,8 @@ Set `logging: true` (or `BRAINTREE_LOGGING=true` with the config shown above) to
 
 ## Support
 
+- Step-by-step setup help (non-technical friendly): [Complete Setup Guide](docs/USER-GUIDE.md)
+- Checkout/frontend integration: [Storefront Integration Guide](docs/STOREFRONT-GUIDE.md)
 - Bug reports and feature requests: [GitHub Issues](https://github.com/easypaymentplugins/braintree-payment/issues)
 - Braintree platform documentation: [developer.paypal.com/braintree](https://developer.paypal.com/braintree/docs)
 

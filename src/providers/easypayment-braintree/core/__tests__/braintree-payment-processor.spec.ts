@@ -517,4 +517,21 @@ describe('BraintreePaymentService core behaviors', () => {
     expect(result.action).toBe('captured');
     expect((result as any).data.session_id).toBe('sess_123');
   });
+
+  it('getWebhookActionAndData tolerates transactions without custom fields', async () => {
+    const { service, gateway } = buildService();
+    const payloadStr = 'bt_signature=s&bt_payload=p';
+    gateway.webhookNotification.parse.mockResolvedValueOnce({
+      kind: 'transaction_settled',
+      transaction: { id: 't5' },
+    });
+    gateway.transaction.find.mockResolvedValueOnce({
+      id: 't5',
+      amount: '12.34',
+    });
+
+    const result = await service.getWebhookActionAndData({ data: payloadStr } as any);
+    expect(result.action).toBe('captured');
+    expect((result as any).data.session_id).toBe('');
+  });
 });

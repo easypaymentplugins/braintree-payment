@@ -1086,7 +1086,8 @@ class BraintreePaymentProcessor extends AbstractPaymentProvider<BraintreeOptions
 
     const paymentData = await this.gateway.transaction.find(notification.transaction.id);
 
-    const customFields = paymentData.customFields as CustomFields;
+    // Braintree omits customFields entirely when the transaction has none.
+    const customFields = (paymentData.customFields ?? {}) as CustomFields;
 
     switch (notification.kind) {
       case 'transaction_settled':
