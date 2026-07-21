@@ -108,11 +108,11 @@ Your store needs three codes to talk to Braintree. Here's where they live:
 Open a terminal, go to your Medusa store's folder, and run **one** of these (whichever package manager your project uses — if unsure, use the first):
 
 ```bash
-npm install @easypaymentplugins/medusa-payment-braintree
+npm install @easypayment/medusa-payment-braintree
 ```
 
 ```bash
-yarn add @easypaymentplugins/medusa-payment-braintree
+yarn add @easypayment/medusa-payment-braintree
 ```
 
 That's it — the plugin's files are now part of your store. Nothing is active yet; the next two steps switch it on.
@@ -166,7 +166,7 @@ module.exports = defineConfig({
       options: {
         providers: [
           {
-            resolve: '@easypaymentplugins/medusa-payment-braintree/providers/easypayment-braintree',
+            resolve: '@easypayment/medusa-payment-braintree/providers/easypayment-braintree',
             id: 'braintree',
             options: {
               environment: process.env.BRAINTREE_ENVIRONMENT ?? 'sandbox',
@@ -484,7 +484,7 @@ Prefer off. The logs don't contain card numbers, but they're verbose and meant f
 
 ## 19. Getting Help
 
-- **Plugin questions or bugs:** open an issue at [github.com/easypaymentplugins/braintree-payment/issues](https://github.com/easypaymentplugins/braintree-payment/issues) — include what you expected, what happened, and (with `BRAINTREE_LOGGING=true`) the relevant `[EasyPayment Braintree]` log lines. **Never include your Private Key in an issue.**
+- **Plugin questions or bugs:** open an issue at [github.com/easypayment/braintree-payment/issues](https://github.com/easypayment/braintree-payment/issues) — include what you expected, what happened, and (with `BRAINTREE_LOGGING=true`) the relevant `[EasyPayment Braintree]` log lines. **Never include your Private Key in an issue.**
 - **Braintree account questions** (approvals, payouts, ACH enablement, disputes): [Braintree support](https://developer.paypal.com/braintree/help).
 - **Medusa platform questions:** [Medusa documentation](https://docs.medusajs.com).
 - **Security issues in the plugin:** please follow [SECURITY.md](../SECURITY.md) instead of opening a public issue.

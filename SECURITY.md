@@ -10,7 +10,7 @@
 
 This plugin handles payment flows, so we take security reports seriously.
 
-Please **do not** open a public GitHub issue for security vulnerabilities. Instead, report them privately via [GitHub Security Advisories](https://github.com/easypaymentplugins/braintree-payment/security/advisories/new) for this repository.
+Please **do not** open a public GitHub issue for security vulnerabilities. Instead, report them privately via [GitHub Security Advisories](https://github.com/easypayment/braintree-payment/security/advisories/new) for this repository.
 
 Include:
 

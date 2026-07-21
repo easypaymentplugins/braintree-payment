@@ -78,6 +78,17 @@ describe('BraintreeAchPaymentService', () => {
       expect(request.options.submitForSettlement).toBe(true);
     });
 
+    it('sends the partner BN code as the transaction channel', async () => {
+      const { service, gateway } = buildService();
+      gateway.transaction.sale.mockResolvedValue({ success: true, transaction: settledTransaction() });
+      gateway.transaction.find.mockResolvedValue(settledTransaction());
+
+      await service.authorizePayment(authorizeInput());
+
+      const request = gateway.transaction.sale.mock.calls[0][0];
+      expect(request.channel).toBe('MBJTechnolabs_SI_SPB');
+    });
+
     it('sends the default network_check verification method', async () => {
       const { service, gateway } = buildService();
       gateway.transaction.sale.mockResolvedValue({ success: true, transaction: settledTransaction() });

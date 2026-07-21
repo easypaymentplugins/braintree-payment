@@ -85,6 +85,12 @@ export interface BraintreeInitiatePaymentData {
 const buildTokenCacheKey = (customerId: string) => `braintree:clientToken:${customerId}`;
 const UNKNOWN_BRAINTREE_ERROR = 'Unknown error';
 
+/**
+ * Partner BN code (PayPal partner attribution ID), sent as the `channel`
+ * on every transaction sale request per Braintree's partner guidelines.
+ */
+export const BRAINTREE_PARTNER_BN_CODE = 'MBJTechnolabs_SI_SPB';
+
 type BraintreeValidationErrorLike = {
   attribute?: string;
   code?: string;
@@ -547,6 +553,7 @@ class BraintreePaymentProcessor extends AbstractPaymentProvider<BraintreeOptions
 
     const transactionRequest: Braintree.TransactionRequest = {
       amount: amount.toString(),
+      channel: BRAINTREE_PARTNER_BN_CODE,
       customerId: (accountHolder?.data?.id as string) ?? undefined,
       options: this.buildTransactionOptions(),
       paymentMethodNonce: nonce,
