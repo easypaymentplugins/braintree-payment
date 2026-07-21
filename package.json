@@ -1,0 +1,80 @@
+{
+  "name": "@lambdacurry/medusa-payment-braintree",
+  "version": "0.1.5",
+  "description": "Braintree plugin for Medusa",
+  "author": "Lambda Curry (https://lambdacurry.dev)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lambda-curry/medusa-plugins.git"
+  },
+  "homepage": "https://github.com/lambda-curry/medusa-plugins/tree/main/plugins/braintree-payment",
+  "files": [
+    ".medusa/server/**/*"
+  ],
+  "main": "./.medusa/server/src/index.js",
+  "types": "./.medusa/server/src/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    "./.medusa/server/src/modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./providers/*": "./.medusa/server/src/providers/*/src/index.js",
+    "./types": {
+      "types": "./.medusa/server/src/types/index.d.ts",
+      "import": "./.medusa/server/src/types/index.js",
+      "require": "./.medusa/server/src/types/index.js",
+      "default": "./.medusa/server/src/types/index.js"
+    },
+    "./*": "./.medusa/server/src/*.js"
+  },
+  "keywords": [
+    "medusa",
+    "plugin",
+    "braintree",
+    "medusa-plugin-integration",
+    "medusa-v2",
+    "medusa-plugin-braintree",
+    "medusa-plugin",
+    "medusa-plugin-payment",
+    "lambdacurry"
+  ],
+  "devDependencies": {
+    "@medusajs/admin-sdk": "^2.15.2",
+    "@medusajs/cli": "^2.15.2",
+    "@medusajs/framework": "^2.15.2",
+    "@medusajs/icons": "^2.15.2",
+    "@medusajs/medusa": "^2.15.2",
+    "@medusajs/test-utils": "^2.15.2",
+    "@medusajs/ui": "^4.1.5",
+    "@swc/core": "^1.7.28",
+    "@types/braintree": "^3.3.14",
+    "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.10",
+    "jest": "^29.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "build": "npx medusa plugin:build",
+    "test": "jest --config jest.config.cjs --runInBand",
+    "plugin:dev": "npx medusa plugin:develop",
+    "prepublishOnly": "npx medusa plugin:build",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@medusajs/admin-sdk": "^2.15.2",
+    "@medusajs/cli": "^2.13.5",
+    "@medusajs/framework": "^2.15.2",
+    "@medusajs/icons": "^2.15.2",
+    "@medusajs/medusa": "2.15.2",
+    "@medusajs/test-utils": "^2.15.2",
+    "@medusajs/ui": "^4.1.5",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "braintree": "^3.38.0"
+  }
+}
