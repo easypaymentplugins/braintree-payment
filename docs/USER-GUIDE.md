@@ -1,4 +1,4 @@
-# Complete Setup Guide — EasyPayment Braintree for Medusa v2
+# Complete Setup Guide — Braintree Payments for Medusa v2
 
 **Who this guide is for:** anyone setting up Braintree payments on a Medusa v2 store — including store owners and managers who are **not developers**. Every step is written in plain language, with exact click-paths and copy-paste blocks. Where a step genuinely needs a developer, the guide says so clearly, and tells you exactly what to send them.
 

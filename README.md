@@ -1,10 +1,12 @@
-# EasyPayment Braintree for Medusa
+# Braintree Payments for Medusa v2
 
-[![npm version](https://img.shields.io/badge/npm-0.0.1-blue)](https://www.npmjs.com/package/@easypayment/medusa-payment-braintree)
+> Accept Credit / Debit Cards and ACH Direct Debit in your Medusa store with the full Braintree payment lifecycle — by EasyPayment.
+
+[![npm version](https://img.shields.io/npm/v/%40easypayment%2Fmedusa-payment-braintree.svg)](https://www.npmjs.com/package/@easypayment/medusa-payment-braintree)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Medusa v2](https://img.shields.io/badge/Medusa-v2-purple)](https://medusajs.com)
 
-**EasyPayment Braintree** is a production-grade [Braintree](https://www.braintreepayments.com/) (a PayPal service) payment provider for [Medusa v2](https://medusajs.com). It gives your Medusa store two customer-facing payment methods — **Credit / Debit Card** and **ACH Direct Debit** — with the full Braintree payment lifecycle: client-token generation, authorization, capture, refunds, voids, vaulted payment methods, 3D Secure, and webhook-driven status updates, all behind Medusa's standard payment provider interface.
+**`@easypayment/medusa-payment-braintree`** is a production-grade [Braintree](https://www.braintreepayments.com/) (a PayPal service) payment provider for [Medusa v2](https://medusajs.com). It gives your Medusa store two customer-facing payment methods — **Credit / Debit Card** and **ACH Direct Debit** — with the full Braintree payment lifecycle: client-token generation, authorization, capture, refunds, voids, vaulted payment methods, 3D Secure, and webhook-driven status updates, all behind Medusa's standard payment provider interface.
 
 Built and maintained by **EasyPayment**.
 
