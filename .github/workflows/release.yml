@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Tag and publish GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Read version
+        id: version
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Verify the release is buildable
+        run: |
+          npm ci
+          npm run typecheck
+          npm test
+          npm run build
+
+      - name: Create tag and GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if gh release view "v${VERSION}" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            echo "Release v${VERSION} already exists — nothing to do."
+            exit 0
+          fi
+          gh release create "v${VERSION}" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --target "${GITHUB_SHA}" \
+            --title "v${VERSION}" \
+            --notes-file CHANGELOG.md
