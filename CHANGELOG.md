@@ -1,6 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.0.2
+
+### Changed
+
+- Refreshed README and documentation; the npm package page now reflects the current docs (the README license section links to the LICENSE file for the full notice).
+
+## 0.0.1
+
+Initial release of `@easypayment/medusa-payment-braintree` under the EasyPayment brand.
 
 ### Changed
 
@@ -17,10 +25,6 @@
 - Webhook handling no longer fails on transactions that have no custom fields configured in Braintree (`customFields` is now safely defaulted before reading `medusa_payment_session_id`).
 - `npm publish` can no longer ship an empty package when the plugin build fails: a publish gate (`scripts/verify-publish.js`) now verifies the compiled `.medusa/server` output exists and aborts the publish otherwise, and the build scripts use the project-local Medusa CLI instead of `npx` (which could silently fall back to a broken globally-installed CLI).
 - `publishConfig.access` is set to `public` so publishing the scoped package no longer fails with npm's 402 "you must sign up for private packages" error (scoped packages default to private/restricted access).
-
-## 0.0.1
-
-Initial release of `@easypayment/medusa-payment-braintree` under the EasyPayment brand.
 
 ### Features
 
