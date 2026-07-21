@@ -29,18 +29,6 @@
     },
     "./*": "./.medusa/server/src/*.js"
   },
-  "keywords": [
-    "medusa",
-    "plugin",
-    "braintree",
-    "paypal",
-    "medusa-plugin-integration",
-    "medusa-v2",
-    "medusa-plugin-braintree",
-    "medusa-plugin",
-    "medusa-plugin-payment",
-    "easypayment"
-  ],
   "devDependencies": {
     "@medusajs/admin-sdk": "^2.15.2",
     "@medusajs/cli": "^2.15.2",
