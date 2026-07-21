@@ -1,14 +1,17 @@
 {
-  "name": "@lambdacurry/medusa-payment-braintree",
-  "version": "0.1.5",
-  "description": "Braintree plugin for Medusa",
-  "author": "Lambda Curry (https://lambdacurry.dev)",
+  "name": "@easypaymentplugins/medusa-payment-braintree",
+  "version": "0.0.1",
+  "description": "Industry-grade Braintree (a PayPal service) payment provider plugin for Medusa v2, by EasyPayment",
+  "author": "EasyPayment (https://github.com/easypaymentplugins)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lambda-curry/medusa-plugins.git"
+    "url": "git+https://github.com/easypaymentplugins/braintree-payment.git"
   },
-  "homepage": "https://github.com/lambda-curry/medusa-plugins/tree/main/plugins/braintree-payment",
+  "homepage": "https://github.com/easypaymentplugins/braintree-payment#readme",
+  "bugs": {
+    "url": "https://github.com/easypaymentplugins/braintree-payment/issues"
+  },
   "files": [
     ".medusa/server/**/*"
   ],
@@ -17,7 +20,7 @@
   "exports": {
     "./package.json": "./package.json",
     "./.medusa/server/src/modules/*": "./.medusa/server/src/modules/*/index.js",
-    "./providers/*": "./.medusa/server/src/providers/*/src/index.js",
+    "./providers/*": "./.medusa/server/src/providers/*/index.js",
     "./types": {
       "types": "./.medusa/server/src/types/index.d.ts",
       "import": "./.medusa/server/src/types/index.js",
@@ -30,12 +33,13 @@
     "medusa",
     "plugin",
     "braintree",
+    "paypal",
     "medusa-plugin-integration",
     "medusa-v2",
     "medusa-plugin-braintree",
     "medusa-plugin",
     "medusa-plugin-payment",
-    "lambdacurry"
+    "easypayment"
   ],
   "devDependencies": {
     "@medusajs/admin-sdk": "^2.15.2",
@@ -75,6 +79,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "braintree": "^3.38.0"
+    "braintree": "^3.38.0",
+    "zod": "^3.24.0 || ^4.0.0"
   }
 }

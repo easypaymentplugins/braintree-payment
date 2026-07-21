@@ -1,6 +1,6 @@
 // Export types
-export * from './providers/payment-braintree/src/types';
-export * from './providers/payment-braintree/src/core/braintree-base';
+export * from './providers/easypayment-braintree/types';
+export * from './providers/easypayment-braintree/core/braintree-payment-processor';
 
 // Export provider
-export { default as BraintreePaymentProvider } from './providers/payment-braintree/src';
+export { default as BraintreePaymentProvider } from './providers/easypayment-braintree';

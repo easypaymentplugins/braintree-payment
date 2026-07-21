@@ -35,10 +35,10 @@ import {
 } from '@medusajs/types';
 import Braintree, { Transaction } from 'braintree';
 import { z } from 'zod';
-import { formatToTwoDecimalString } from '../../../../utils/format-amount';
+import { formatToTwoDecimalString } from '../../../utils/format-amount';
 import { BraintreeOptions, PaymentProviderKeys } from '../types';
-import { isBraintreeFailureResponse, throwOnBraintreeFailure } from './braintree-base';
-import type { BraintreeConstructorArgs } from './braintree-base';
+import { isBraintreeFailureResponse, throwOnBraintreeFailure } from './braintree-payment-processor';
+import type { BraintreeConstructorArgs } from './braintree-payment-processor';
 
 export interface BraintreeImportInitiatePaymentData {
   transactionId?: string;
@@ -53,7 +53,7 @@ export interface BraintreeImportPaymentSessionData {
   status: PaymentSessionStatus;
 }
 
-class BraintreeImport extends AbstractPaymentProvider<BraintreeOptions> {
+class BraintreeImportedPayment extends AbstractPaymentProvider<BraintreeOptions> {
   static identifier = PaymentProviderKeys.IMPORTED;
   options: BraintreeOptions;
   logger: Logger;
@@ -81,14 +81,14 @@ class BraintreeImport extends AbstractPaymentProvider<BraintreeOptions> {
     });
 
     if (this.options.logging) {
-      this.logger.info(`[Braintree Import] Gateway initialized (environment: ${envKey})`);
+      this.logger.info(`[EasyPayment Braintree Import] Gateway initialized (environment: ${envKey})`);
     }
   }
 
   private logDebug(message: string, context?: Record<string, unknown>): void {
     if (this.options.logging) {
       const msg = context ? `${message} ${JSON.stringify(context)}` : message;
-      this.logger.info(`[Braintree Import] ${msg}`);
+      this.logger.info(`[EasyPayment Braintree Import] ${msg}`);
     }
   }
 
@@ -96,7 +96,7 @@ class BraintreeImport extends AbstractPaymentProvider<BraintreeOptions> {
     if (!this.options.logging) return;
     const msg = error instanceof Error ? error.message : String(error);
     const ctx = context ? ` ${JSON.stringify(context)}` : '';
-    this.logger.info(`[Braintree Import] ERROR ${operation}: ${msg}${ctx}`);
+    this.logger.info(`[EasyPayment Braintree Import] ERROR ${operation}: ${msg}${ctx}`);
   }
 
   private parseInitiateData(data: Record<string, unknown>): BraintreeImportInitiatePaymentData {
@@ -342,4 +342,4 @@ class BraintreeImport extends AbstractPaymentProvider<BraintreeOptions> {
   }
 }
 
-export default BraintreeImport;
+export default BraintreeImportedPayment;

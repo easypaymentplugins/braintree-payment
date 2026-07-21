@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { MedusaError } from '@medusajs/framework/utils';
 import type { RefundPaymentInput } from '@medusajs/types';
-import BraintreeProviderService from '../../services/braintree-provider';
-import { BraintreeConstructorArgs, BraintreePaymentSessionData } from '../braintree-base';
+import BraintreePaymentService from '../../services/braintree-payment-service';
+import { BraintreeConstructorArgs, BraintreePaymentSessionData } from '../braintree-payment-processor';
 import type { BraintreeOptions } from '../../types';
 
 type RefundResultData = {
@@ -36,7 +36,7 @@ const buildService = (overrideOptions?: Partial<BraintreeOptions>) => {
     ...overrideOptions,
   } as BraintreeOptions;
 
-  const service = new BraintreeProviderService(container, options);
+  const service = new BraintreePaymentService(container, options);
 
   // Replace gateway with a mock implementation
   const gateway = {
@@ -69,7 +69,7 @@ const settledRefundInput = (amount: number, transactionId = 't-settled'): Refund
   },
 });
 
-describe('BraintreeProviderService core behaviors', () => {
+describe('BraintreePaymentService core behaviors', () => {
   const originalTestForceSettled = process.env.TEST_FORCE_SETTLED;
 
   beforeEach(() => {
@@ -486,7 +486,7 @@ describe('BraintreeProviderService core behaviors', () => {
     expect(gateway.transaction.void).toHaveBeenCalledWith('t-prod');
     expect(gateway.transaction.refund).not.toHaveBeenCalled();
     expect(logger.warn).toHaveBeenCalledWith(
-      '[Braintree refund] TEST_FORCE_SETTLED ignored — only supported when environment is sandbox',
+      '[EasyPayment Braintree] TEST_FORCE_SETTLED ignored — only supported when environment is sandbox',
     );
     expect((result.data as RefundResultData).braintreeRefund?.success).toBe(true);
   });

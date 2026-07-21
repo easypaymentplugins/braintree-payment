@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { MedusaError } from '@medusajs/framework/utils';
-import BraintreeImportService from '../../services/braintree-import';
-import { BraintreeConstructorArgs } from '../braintree-base';
+import BraintreeImportedPaymentService from '../../services/braintree-imported-payment-service';
+import { BraintreeConstructorArgs } from '../braintree-payment-processor';
 
 const buildService = () => {
   const logger = { info: jest.fn(), warn: jest.fn(), error: jest.fn() } as any;
@@ -20,7 +20,7 @@ const buildService = () => {
     autoCapture: true,
   } as any;
 
-  const service = new BraintreeImportService(container, options);
+  const service = new BraintreeImportedPaymentService(container, options);
 
   // Replace gateway used only for actual refunds
   const gateway = {
@@ -36,7 +36,7 @@ const buildService = () => {
   return { service, gateway };
 };
 
-describe('BraintreeImportService', () => {
+describe('BraintreeImportedPaymentService', () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
@@ -110,7 +110,7 @@ describe('BraintreeImportService', () => {
       allowRefundOnRefunded: true, // Enable graceful handling
     } as any;
 
-    const service = new BraintreeImportService(container, options);
+    const service = new BraintreeImportedPaymentService(container, options);
 
     const gateway = {
       transaction: {
@@ -151,7 +151,7 @@ describe('BraintreeImportService', () => {
       allowRefundOnRefunded: true,
     } as any;
 
-    const service = new BraintreeImportService(container, options);
+    const service = new BraintreeImportedPaymentService(container, options);
 
     const gateway = {
       transaction: {
