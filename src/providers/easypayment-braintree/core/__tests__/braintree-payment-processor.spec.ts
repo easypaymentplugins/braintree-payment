@@ -2,7 +2,11 @@ import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals
 import { MedusaError } from '@medusajs/framework/utils';
 import type { RefundPaymentInput } from '@medusajs/types';
 import BraintreePaymentService from '../../services/braintree-payment-service';
-import { BraintreeConstructorArgs, BraintreePaymentSessionData } from '../braintree-payment-processor';
+import {
+  BRAINTREE_PARTNER_BN_CODE,
+  BraintreeConstructorArgs,
+  BraintreePaymentSessionData,
+} from '../braintree-payment-processor';
 import type { BraintreeOptions } from '../../types';
 
 type RefundResultData = {
@@ -139,6 +143,7 @@ describe('BraintreePaymentService core behaviors', () => {
     expect(gateway.transaction.sale).toHaveBeenCalled();
     const saleArgs = gateway.transaction.sale.mock.calls[0][0];
     expect(saleArgs.amount).toBe('10.00');
+    expect(saleArgs.channel).toBe(BRAINTREE_PARTNER_BN_CODE);
     expect(result.status).toBe('captured');
   });
 

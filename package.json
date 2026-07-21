@@ -1,16 +1,16 @@
 {
-  "name": "@easypaymentplugins/medusa-payment-braintree",
+  "name": "@easypayment/medusa-payment-braintree",
   "version": "0.0.1",
   "description": "Industry-grade Braintree (a PayPal service) payment provider plugin for Medusa v2, by EasyPayment",
-  "author": "EasyPayment (https://github.com/easypaymentplugins)",
+  "author": "EasyPayment (https://github.com/easypayment)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/easypaymentplugins/braintree-payment.git"
+    "url": "git+https://github.com/easypayment/braintree-payment.git"
   },
-  "homepage": "https://github.com/easypaymentplugins/braintree-payment#readme",
+  "homepage": "https://github.com/easypayment/braintree-payment#readme",
   "bugs": {
-    "url": "https://github.com/easypaymentplugins/braintree-payment/issues"
+    "url": "https://github.com/easypayment/braintree-payment/issues"
   },
   "files": [
     ".medusa/server/**/*"

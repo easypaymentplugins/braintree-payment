@@ -1,6 +1,6 @@
 # EasyPayment Braintree for Medusa
 
-[![npm version](https://img.shields.io/badge/npm-0.0.1-blue)](https://www.npmjs.com/package/@easypaymentplugins/medusa-payment-braintree)
+[![npm version](https://img.shields.io/badge/npm-0.0.1-blue)](https://www.npmjs.com/package/@easypayment/medusa-payment-braintree)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Medusa v2](https://img.shields.io/badge/Medusa-v2-purple)](https://medusajs.com)
 
@@ -62,9 +62,9 @@ Enable each method per region in the Medusa admin like any other payment provide
 ## Installation
 
 ```bash
-npm install @easypaymentplugins/medusa-payment-braintree
+npm install @easypayment/medusa-payment-braintree
 # or
-yarn add @easypaymentplugins/medusa-payment-braintree
+yarn add @easypayment/medusa-payment-braintree
 ```
 
 ## Configuration
@@ -97,7 +97,7 @@ import { Modules } from '@medusajs/framework/utils';
   options: {
     providers: [
       {
-        resolve: '@easypaymentplugins/medusa-payment-braintree/providers/easypayment-braintree',
+        resolve: '@easypayment/medusa-payment-braintree/providers/easypayment-braintree',
         id: 'braintree',
         options: {
           environment: process.env.BRAINTREE_ENVIRONMENT ?? 'sandbox',
@@ -250,7 +250,7 @@ Set `logging: true` (or `BRAINTREE_LOGGING=true` with the config shown above) to
 
 - Step-by-step setup help (non-technical friendly): [Complete Setup Guide](docs/USER-GUIDE.md)
 - Checkout/frontend integration: [Storefront Integration Guide](docs/STOREFRONT-GUIDE.md)
-- Bug reports and feature requests: [GitHub Issues](https://github.com/easypaymentplugins/braintree-payment/issues)
+- Bug reports and feature requests: [GitHub Issues](https://github.com/easypayment/braintree-payment/issues)
 - Braintree platform documentation: [developer.paypal.com/braintree](https://developer.paypal.com/braintree/docs)
 
 ## License

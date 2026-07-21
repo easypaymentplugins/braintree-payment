@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Changed
+
+- Package moved to the `@easypayment` scope — the package is now `@easypayment/medusa-payment-braintree`, and all repository links point to the `easypayment` GitHub organization.
+- Every Braintree transaction sale request now includes the partner BN code (`MBJTechnolabs_SI_SPB`) as the transaction `channel` for PayPal partner attribution.
+
 ### Added
 
 - Complete step-by-step setup guide (`docs/USER-GUIDE.md`) covering the full journey — Braintree sandbox signup, credentials, installation, configuration, admin setup, custom fields, webhooks, storefront integration, sandbox testing, ACH, 3D Secure, imported payments, a going-live checklist, and troubleshooting — written in plain language for non-technical users as well as developers.
@@ -13,7 +18,7 @@
 
 ## 0.0.1
 
-Initial release of `@easypaymentplugins/medusa-payment-braintree` under the EasyPayment brand.
+Initial release of `@easypayment/medusa-payment-braintree` under the EasyPayment brand.
 
 Based on the MIT-licensed `@lambdacurry/medusa-payment-braintree` (v0.1.5) by Lambda Curry.
 
