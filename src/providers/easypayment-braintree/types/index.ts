@@ -1,5 +1,7 @@
 import type Braintree from 'braintree';
 
+export type AchVerificationMethod = 'network_check' | 'independent_check' | 'micro_transfers' | 'tokenized_check';
+
 export interface BraintreeOptions extends Braintree.ClientGatewayConfig {
   defaultCurrencyCode?: string;
   environment: 'production' | 'sandbox' | 'development' | 'qa';
@@ -11,14 +13,35 @@ export interface BraintreeOptions extends Braintree.ClientGatewayConfig {
   webhookSecret: string;
   autoCapture: boolean;
   allowRefundOnRefunded?: boolean;
+  /**
+   * Merchant account to route ACH (US bank account) transactions through.
+   * Required by Braintree when your default merchant account does not support ACH.
+   */
+  achMerchantAccountId?: string;
+  /**
+   * Bank account verification method used for ACH transactions.
+   * Defaults to `network_check` (instant verification).
+   */
+  achVerificationMethod?: AchVerificationMethod;
   /** When true, logs important operations to the console for debugging. */
   logging?: boolean;
 }
 
 export const PaymentProviderKeys = {
-  BRAINTREE: 'braintree',
+  /** Credit / debit card payments. */
+  CARD: 'braintree',
+  /** ACH Direct Debit (US bank account) payments. */
+  ACH: 'braintree-ach',
+  /** Payments imported from another platform whose transactions live in Braintree. */
   IMPORTED: 'imported',
 };
+
+export const ACH_VERIFICATION_METHODS: readonly AchVerificationMethod[] = [
+  'network_check',
+  'independent_check',
+  'micro_transfers',
+  'tokenized_check',
+];
 
 // Flexible map of custom fields returned by Braintree.
 // Values are represented as strings by the API.

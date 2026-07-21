@@ -46,8 +46,9 @@ import type {
 import type { Transaction, TransactionNotification, TransactionStatus } from 'braintree';
 import Braintree from 'braintree';
 import { z } from 'zod';
-import { formatToTwoDecimalString } from '../../../../utils/format-amount';
+import { formatToTwoDecimalString } from '../../../utils/format-amount';
 import type { BraintreeOptions, CustomFields } from '../types';
+import { ACH_VERIFICATION_METHODS } from '../types';
 
 export type BraintreeConstructorArgs = Record<string, unknown> & {
   logger: Logger;
@@ -215,7 +216,7 @@ export const buildBraintreeError = (
   return new MedusaError(MedusaError.Types.INVALID_DATA, `Failed to ${operation}: ${errorMessage}`);
 };
 
-class BraintreeBase extends AbstractPaymentProvider<BraintreeOptions> {
+class BraintreePaymentProcessor extends AbstractPaymentProvider<BraintreeOptions> {
   identifier = 'braintree';
   protected readonly options_: BraintreeOptions;
   protected gateway: Braintree.BraintreeGateway;
@@ -248,7 +249,7 @@ class BraintreeBase extends AbstractPaymentProvider<BraintreeOptions> {
   protected logDebug(message: string, context?: Record<string, unknown>): void {
     if (this.options_.logging) {
       const msg = context ? `${message} ${JSON.stringify(context)}` : message;
-      this.logger.info(`[Braintree] ${msg}`);
+      this.logger.info(`[EasyPayment Braintree] ${msg}`);
     }
   }
 
@@ -259,7 +260,7 @@ class BraintreeBase extends AbstractPaymentProvider<BraintreeOptions> {
     const stack = error instanceof Error ? error.stack : undefined;
     const ctx = context ? ` ${JSON.stringify(context)}` : '';
     const stackLine = stack ? ` stack: ${stack}` : '';
-    this.logger.info(`[Braintree] ERROR ${operation}: ${msg}${ctx}${stackLine}`);
+    this.logger.info(`[EasyPayment Braintree] ERROR ${operation}: ${msg}${ctx}${stackLine}`);
   }
 
   private isTestForceSettledEnabled(): boolean {
@@ -370,6 +371,23 @@ class BraintreeBase extends AbstractPaymentProvider<BraintreeOptions> {
           `Option "${field}" must be a boolean in Braintree plugin`,
         );
       }
+    }
+
+    if (isDefined(options.achMerchantAccountId) && typeof options.achMerchantAccountId !== 'string') {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_ARGUMENT,
+        'Option "achMerchantAccountId" must be a string in Braintree plugin',
+      );
+    }
+
+    if (
+      isDefined(options.achVerificationMethod) &&
+      !ACH_VERIFICATION_METHODS.includes(options.achVerificationMethod)
+    ) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_ARGUMENT,
+        `Invalid achVerificationMethod "${options.achVerificationMethod}" in Braintree plugin. Must be one of: ${ACH_VERIFICATION_METHODS.join(', ')}`,
+      );
     }
   }
 
@@ -530,21 +548,47 @@ class BraintreeBase extends AbstractPaymentProvider<BraintreeOptions> {
     const transactionRequest: Braintree.TransactionRequest = {
       amount: amount.toString(),
       customerId: (accountHolder?.data?.id as string) ?? undefined,
-      options: {
-        submitForSettlement: this.options_.autoCapture,
-        storeInVaultOnSuccess: this.options_.savePaymentMethod,
-        storeInVault: this.options_.savePaymentMethod,
-        threeDSecure: this.options_.enable3DSecure
-          ? {
-              required: this.options_.enable3DSecure,
-            }
-          : undefined,
-      },
+      options: this.buildTransactionOptions(),
       paymentMethodNonce: nonce,
       ...braintreeContext,
+      ...this.buildTransactionRequestOverrides(),
     };
 
     return transactionRequest;
+  }
+
+  /**
+   * Transaction options for the sale request. Payment-method-specific
+   * subclasses (e.g. ACH) override this to apply gateway rules for
+   * their instrument type.
+   */
+  protected buildTransactionOptions(): Braintree.TransactionRequest['options'] {
+    return {
+      submitForSettlement: this.options_.autoCapture,
+      storeInVaultOnSuccess: this.options_.savePaymentMethod,
+      storeInVault: this.options_.savePaymentMethod,
+      threeDSecure: this.options_.enable3DSecure
+        ? {
+            required: this.options_.enable3DSecure,
+          }
+        : undefined,
+    };
+  }
+
+  /**
+   * Extra top-level fields merged into the sale request (e.g. a dedicated
+   * merchantAccountId for ACH). Subclasses override as needed.
+   */
+  protected buildTransactionRequestOverrides(): Partial<Braintree.TransactionRequest> {
+    return {};
+  }
+
+  /**
+   * Extra fields merged into paymentMethod.create when vaulting (e.g. the
+   * bank-account verification method for ACH). Subclasses override as needed.
+   */
+  protected buildPaymentMethodCreateOverrides(): Record<string, unknown> {
+    return {};
   }
 
   private async retrieveTransaction(id: string, throwOnMissing: boolean = true): Promise<Transaction> {
@@ -767,6 +811,7 @@ class BraintreeBase extends AbstractPaymentProvider<BraintreeOptions> {
     const paymentMethodResult = await this.gateway.paymentMethod.create({
       customerId: braintreeCustomerId,
       paymentMethodNonce: paymentMethodNonce,
+      ...this.buildPaymentMethodCreateOverrides(),
     });
 
     if (!paymentMethodResult.success) {
@@ -816,7 +861,7 @@ class BraintreeBase extends AbstractPaymentProvider<BraintreeOptions> {
     if (process.env.TEST_FORCE_SETTLED === 'true') {
       if (!this.isTestForceSettledEnabled()) {
         this.logger.warn(
-          '[Braintree refund] TEST_FORCE_SETTLED ignored — only supported when environment is sandbox',
+          '[EasyPayment Braintree] TEST_FORCE_SETTLED ignored — only supported when environment is sandbox',
         );
       } else {
         shouldVoid = false;
@@ -1090,4 +1135,4 @@ class BraintreeBase extends AbstractPaymentProvider<BraintreeOptions> {
   }
 }
 
-export default BraintreeBase;
+export default BraintreePaymentProcessor;

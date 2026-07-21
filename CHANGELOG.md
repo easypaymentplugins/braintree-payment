@@ -1,29 +1,22 @@
 # Changelog
 
-## 0.1.5
+## 0.0.1
 
-### Fixes
+Initial release of `@easypaymentplugins/medusa-payment-braintree` under the EasyPayment brand.
 
-- Format Braintree validation errors with a `BT:` prefix and optional attribute (e.g. `BT: amount: Refund amount is too large. (91517)`).
-- Publish `.medusa/server/**/*` so Yarn 4 packages include built plugin files correctly.
+Based on the MIT-licensed `@lambdacurry/medusa-payment-braintree` (v0.1.5) by Lambda Curry.
 
-### Improvements
+### Features
 
-- Remove dedicated `[Braintree refund]` JSON path tracing; refund debugging remains available via provider `logging` (`logDebug` / `logErrorDetail`).
-- Bump Medusa peer dependencies to `2.15.2` and `braintree` to `^3.38.0`.
-- Expand import-provider tests for processor declines and validation errors on void/refund.
-
-## 0.1.2
-
-### Fixes
-
-- Surface Braintree processor decline / settlement decline details on refund and void failures via `throwOnBraintreeFailure` (including cases where `success` is true but status is declined).
-
-### Improvements
-
-- Enforce sandbox-only `TEST_FORCE_SETTLED` — settle-before-refund is ignored with a warning outside `environment: sandbox`.
-- Tighten refund path typing (guard missing transaction id).
-
-### Documentation
-
-- Document `BRAINTREE_LOGGING`, sandbox requirement for `TEST_FORCE_SETTLED`, and upgrading notes for explicit logging configuration.
+- Braintree (a PayPal service) payment provider for Medusa v2.
+- Two customer-facing payment methods: **Credit / Debit Card** (`braintree`) and **ACH Direct Debit** (`braintree-ach`), registered as separate Medusa payment providers.
+- ACH support includes configurable bank-account verification (`achVerificationMethod`, default `network_check`), optional dedicated merchant account routing (`achMerchantAccountId`), and enforced immediate settlement per Braintree's ACH rules.
+- Secure payment processing with authorize, capture, refund, void, and cancel flows.
+- 3D Secure authentication support (`enable3DSecure`).
+- Webhook handling for payment status updates with signature validation.
+- Save payment methods (vaulting) for future transactions (`savePaymentMethod`).
+- Auto-capture support (`autoCapture`).
+- Imported-transaction provider with graceful handling of already-refunded transactions (`allowRefundOnRefunded`).
+- Custom fields forwarded to Braintree transactions (`context.custom_fields`).
+- Sandbox refund testing via `TEST_FORCE_SETTLED` (sandbox-only, with warning outside sandbox).
+- Optional debug logging via the `logging` option / `BRAINTREE_LOGGING` env var.
