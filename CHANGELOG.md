@@ -22,8 +22,6 @@
 
 Initial release of `@easypayment/medusa-payment-braintree` under the EasyPayment brand.
 
-Based on the MIT-licensed `@lambdacurry/medusa-payment-braintree` (v0.1.5) by Lambda Curry.
-
 ### Features
 
 - Braintree (a PayPal service) payment provider for Medusa v2.

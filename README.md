@@ -257,4 +257,4 @@ Set `logging: true` (or `BRAINTREE_LOGGING=true` with the config shown above) to
 
 ## License
 
-[MIT](LICENSE) © EasyPayment. Portions derived from the MIT-licensed work of Lambda Curry — see [LICENSE](LICENSE) for the full notice.
+[MIT](LICENSE) © EasyPayment — see [LICENSE](LICENSE) for the full notice.
