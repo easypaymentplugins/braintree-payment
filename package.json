@@ -1,17 +1,30 @@
 {
   "name": "@easypayment/medusa-payment-braintree",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Braintree payment provider plugin for Medusa v2 — accept credit/debit cards and ACH Direct Debit with 3D Secure, vaulting, refunds, and webhook-driven payment updates.",
-  "author": "EasyPayment (https://github.com/easypayment)",
+  "author": "EasyPayment (https://github.com/easypaymentplugins)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/easypayment/braintree-payment.git"
+    "url": "git+https://github.com/easypaymentplugins/braintree-payment.git"
   },
-  "homepage": "https://github.com/easypayment/braintree-payment#readme",
+  "homepage": "https://github.com/easypaymentplugins/braintree-payment#readme",
   "bugs": {
-    "url": "https://github.com/easypayment/braintree-payment/issues"
+    "url": "https://github.com/easypaymentplugins/braintree-payment/issues"
   },
+  "keywords": [
+    "medusa-v2",
+    "medusa-plugin-integration",
+    "medusa-plugin-payment",
+    "braintree",
+    "paypal",
+    "payment",
+    "ach",
+    "direct-debit",
+    "credit-card",
+    "3d-secure",
+    "ecommerce"
+  ],
   "files": [
     ".medusa/server/**/*"
   ],
@@ -44,6 +57,7 @@
     "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "scripts": {

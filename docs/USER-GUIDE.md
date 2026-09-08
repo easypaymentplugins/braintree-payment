@@ -484,7 +484,7 @@ Prefer off. The logs don't contain card numbers, but they're verbose and meant f
 
 ## 19. Getting Help
 
-- **Plugin questions or bugs:** open an issue at [github.com/easypayment/braintree-payment/issues](https://github.com/easypayment/braintree-payment/issues) — include what you expected, what happened, and (with `BRAINTREE_LOGGING=true`) the relevant `[EasyPayment Braintree]` log lines. **Never include your Private Key in an issue.**
+- **Plugin questions or bugs:** open an issue at [github.com/easypaymentplugins/braintree-payment/issues](https://github.com/easypaymentplugins/braintree-payment/issues) — include what you expected, what happened, and (with `BRAINTREE_LOGGING=true`) the relevant `[EasyPayment Braintree]` log lines. **Never include your Private Key in an issue.**
 - **Braintree account questions** (approvals, payouts, ACH enablement, disputes): [Braintree support](https://developer.paypal.com/braintree/help).
 - **Medusa platform questions:** [Medusa documentation](https://docs.medusajs.com).
 - **Security issues in the plugin:** please follow [SECURITY.md](../SECURITY.md) instead of opening a public issue.

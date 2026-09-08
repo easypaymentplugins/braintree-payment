@@ -1,10 +1,22 @@
+<div align="center">
+
 # Braintree Payments for Medusa v2
 
-> Accept Credit / Debit Cards and ACH Direct Debit in your Medusa store with the full Braintree payment lifecycle — by EasyPayment.
+**Accept Credit / Debit Cards and ACH Direct Debit in your Medusa store<br>with the full Braintree payment lifecycle — by EasyPayment.**
 
-[![npm version](https://img.shields.io/npm/v/%40easypayment%2Fmedusa-payment-braintree.svg)](https://www.npmjs.com/package/@easypayment/medusa-payment-braintree)
+[![npm version](https://img.shields.io/npm/v/%40easypayment%2Fmedusa-payment-braintree.svg?logo=npm&color=cb3837)](https://www.npmjs.com/package/@easypayment/medusa-payment-braintree)
+[![npm downloads](https://img.shields.io/npm/dm/%40easypayment%2Fmedusa-payment-braintree.svg?color=blue)](https://www.npmjs.com/package/@easypayment/medusa-payment-braintree)
+[![CI](https://github.com/easypaymentplugins/braintree-payment/actions/workflows/ci.yml/badge.svg)](https://github.com/easypaymentplugins/braintree-payment/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Node >= 20](https://img.shields.io/badge/Node-%E2%89%A5%2020-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Medusa v2](https://img.shields.io/badge/Medusa-v2-purple)](https://medusajs.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](tsconfig.json)
+
+[Installation](#installation) · [Configuration](#configuration) · [Provider Options](#provider-options) · [Setup Guide](docs/USER-GUIDE.md) · [Storefront Guide](docs/STOREFRONT-GUIDE.md) · [Changelog](CHANGELOG.md)
+
+</div>
+
+---
 
 **`@easypayment/medusa-payment-braintree`** is a production-grade [Braintree](https://www.braintreepayments.com/) (a PayPal service) payment provider for [Medusa v2](https://medusajs.com). It gives your Medusa store two customer-facing payment methods — **Credit / Debit Card** and **ACH Direct Debit** — with the full Braintree payment lifecycle: client-token generation, authorization, capture, refunds, voids, vaulted payment methods, 3D Secure, and webhook-driven status updates, all behind Medusa's standard payment provider interface.
 
@@ -29,6 +41,9 @@ Built and maintained by **EasyPayment**.
 - [Imported Payments Provider](#imported-payments-provider)
 - [Sandbox & Testing](#sandbox--testing)
 - [Debug Logging](#debug-logging)
+- [Support](#support)
+- [Contributing](#contributing)
+- [Security](#security)
 - [License](#license)
 
 ## Highlights
@@ -252,8 +267,16 @@ Set `logging: true` (or `BRAINTREE_LOGGING=true` with the config shown above) to
 
 - Step-by-step setup help (non-technical friendly): [Complete Setup Guide](docs/USER-GUIDE.md)
 - Checkout/frontend integration: [Storefront Integration Guide](docs/STOREFRONT-GUIDE.md)
-- Bug reports and feature requests: [GitHub Issues](https://github.com/easypayment/braintree-payment/issues)
+- Bug reports and feature requests: [GitHub Issues](https://github.com/easypaymentplugins/braintree-payment/issues)
 - Braintree platform documentation: [developer.paypal.com/braintree](https://developer.paypal.com/braintree/docs)
+
+## Contributing
+
+Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) for the development workflow and pull-request checklist. In short: keep changes focused, add tests for behavior changes, and make sure `npm run typecheck`, `npm test`, and `npm run build` all pass.
+
+## Security
+
+This plugin handles payment flows, so security reports are taken seriously. Please **do not** open public issues for vulnerabilities — report them privately as described in the [Security Policy](SECURITY.md). Card data never touches your server: Braintree's client SDK tokenizes it in the browser, and webhook payloads are signature-verified before any payment state changes.
 
 ## License
 

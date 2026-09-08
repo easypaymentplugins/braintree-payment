@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.0.5
+
+### Fixed
+
+- All repository links (`repository`, `homepage`, `bugs`, and `author` in `package.json`, plus README, CONTRIBUTING, SECURITY, and the docs guides) now point to the correct GitHub organization — `github.com/easypaymentplugins/braintree-payment`. Previously they pointed to a non-existent `easypayment` organization, so the "Repository" and "Issues" links on the npm package page were broken.
+
+### Changed
+
+- README refreshed with a centered header, an expanded badge row (npm version, downloads, CI status, license, Node, Medusa, TypeScript), quick navigation links, and new Contributing and Security sections.
+- Additional npm keywords (`braintree`, `paypal`, `payment`, `ach`, `direct-debit`, `credit-card`, `3d-secure`, `ecommerce`) for better discoverability.
+- LICENSE copyright notice now names EasyPayment as the copyright holder.
+
+## 0.0.4
+
+### Changed
+
+- Added npm keywords (`medusa-v2`, `medusa-plugin-integration`, `medusa-plugin-payment`) so the plugin is discoverable in the Medusa plugin ecosystem, matching `@easypayment/medusa-payment-paypal`.
+
+## 0.0.3
+
+### Changed
+
+- Updated the LICENSE notice.
+
 ## 0.0.2
 
 ### Changed

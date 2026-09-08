@@ -5,7 +5,7 @@ Thanks for your interest in improving this plugin!
 ## Getting started
 
 ```bash
-git clone https://github.com/easypayment/braintree-payment.git
+git clone https://github.com/easypaymentplugins/braintree-payment.git
 cd braintree-payment
 npm install
 ```
@@ -27,7 +27,7 @@ npm install
 
 ## Reporting bugs
 
-Open a [GitHub issue](https://github.com/easypayment/braintree-payment/issues) with:
+Open a [GitHub issue](https://github.com/easypaymentplugins/braintree-payment/issues) with:
 
 - Plugin, Medusa, and Node versions
 - The Braintree environment (sandbox/production)
